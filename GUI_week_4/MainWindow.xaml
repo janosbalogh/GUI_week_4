@@ -12,5 +12,42 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
+
+        <ListBox x:Name="lbox" Grid.Column="0" HorizontalAlignment="Stretch">
+            <ListBox.Resources>
+                <local:IntToColor x:Key="IntToColor" />
+            </ListBox.Resources>
+
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Content="{Binding Name}"/>
+                        <ProgressBar Grid.Row="1" Grid.Column="0" Padding="10" Margin="10,1,10,1" Minimum="0" Maximum="10" Height="10" Width="80" Foreground="{Binding Power, Converter={StaticResource ResourceKey=IntToColor}, Mode=OneWay}" Value="{Binding Power}"/>
+                        <ProgressBar Grid.Row="1" Grid.Column="1" Padding="10" Margin="10,1,10,1" Minimum="0" Maximum="10" Height="10" Width="80" Foreground="{Binding Vitality, Converter={StaticResource ResourceKey=IntToColor}, Mode=OneWay}" Value="{Binding Vitality}"/>
+                        <ProgressBar Grid.Row="1" Grid.Column="2" Padding="10" Margin="10,1,10,1" Minimum="0" Maximum="10" Height="10" Width="80" Foreground="{Binding Cost, Converter={StaticResource ResourceKey=IntToColor}, Mode=OneWay}" Value="{Binding Cost}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Column="1">
+            <Label  x:Name="armyCost" Content="Money:" HorizontalAlignment="Center"/>
+            <Button Content="Add To Army" Padding="5" Margin="5,10,5,20"/>
+            <Button Content="Remove From Army" Padding="5" Margin="5,0,5,20"/>
+            <Button Content="Edit Trooper" Padding="5" Margin="5,0,5,20" Click="Button_Click"/>
+        </StackPanel>
+
+        <ListBox Grid.Column="2"/>
+
     </Grid>
 </Window>
